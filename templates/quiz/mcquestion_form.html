@@ -5,23 +5,23 @@
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'programs' %}">Programs</a></li>
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'programs' %}">Programas</a></li>
         <li class="breadcrumb-item"><a href="{% url 'program_detail' course.program.id %}">{{ course.program }}</a></li>
         <li class="breadcrumb-item"><a href="{{ course.get_absolute_url }}">{{ course }}</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'quiz_index' course.slug %}">Quizzes</a></li>
-        <li class="breadcrumb-item active" aria-current="page">MC Question Form</li>
+        <li class="breadcrumb-item"><a href="{% url 'quiz_index' course.slug %}">Cuestionarios</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Formulario Preguntas Opción Múltiple</li>
     </ol>
 </nav>
 
-<div class="title-1">Add questions [{{ quiz_obj|truncatechars:15 }}]</div>
+<div class="title-1">Añadir preguntas [{{ quiz_obj|truncatechars:15 }}]</div>
 <br><br>
 
 <div class="container">
-    <div class="info-text bg-orange mb-3">{{ quizQuestions }} question added</div>
+    <div class="info-text bg-orange mb-3">{{ quizQuestions }} pregunta añadida</div>
 
     <form action="#" method="POST">{% csrf_token %}
-        {% if form.errors %}<p class="alert alert-danger">Correct the error(s) below.</p>{% endif %}
+        {% if form.errors %}<p class="alert alert-danger">Corrija el error o los errores que figuran a continuación.</p>{% endif %}
         <div class="row">
             <div class="col mx-3 py-4 border bg-white">
                 <div class="mb-2" hidden>
@@ -40,11 +40,11 @@
                     <label for="username">{{ fs.label }}</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">{{ fs.correct }} <small class="ml-1">Correct</small></span>
+                            <span class="input-group-text">{{ fs.correct }} <small class="ml-1">Correcto</small></span>
                         </div>
                         {{ fs.choice }}
                         <div class="input-group-prepend">
-                            <span class="input-group-text">{{ fs.DELETE }} <small class="ml-1">Delete</small></span>
+                            <span class="input-group-text">{{ fs.DELETE }} <small class="ml-1">Eliminar</small></span>
                         </div>
                     </div>
                 {% endfor %}
@@ -52,9 +52,9 @@
             </div>
         </div>
         <button type="submit" formnovalidate name="another" class="btn btn-outline-primary">
-            Save and add another
+            Guardar y añadir otra
         </button>
-        <button class="btn btn-primary my-4" type="submit">Save</button>
+        <button class="btn btn-primary my-4" type="submit">Guardar</button>
     </form>
 </div>
 

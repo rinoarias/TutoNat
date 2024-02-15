@@ -4,9 +4,9 @@ from .models import User, Student
 
 
 class LecturerFilter(django_filters.FilterSet):
-    username = django_filters.CharFilter(lookup_expr="exact", label="")
-    name = django_filters.CharFilter(method="filter_by_name", label="")
-    email = django_filters.CharFilter(lookup_expr="icontains", label="")
+    username = django_filters.CharFilter(lookup_expr="exact", label="Nombre de usuario")
+    name = django_filters.CharFilter(method="filter_by_name", label="Nombre")
+    email = django_filters.CharFilter(lookup_expr="icontains", label="Correo electrónico")
 
     class Meta:
         model = User
@@ -15,15 +15,15 @@ class LecturerFilter(django_filters.FilterSet):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Change html classes and placeholders
+        # Cambiar las clases HTML y los marcadores de posición
         self.filters["username"].field.widget.attrs.update(
-            {"class": "au-input", "placeholder": "ID No."}
+            {"class": "au-input", "placeholder": "Usuario"}
         )
         self.filters["name"].field.widget.attrs.update(
-            {"class": "au-input", "placeholder": "Name"}
+            {"class": "au-input", "placeholder": "Nombre"}
         )
         self.filters["email"].field.widget.attrs.update(
-            {"class": "au-input", "placeholder": "Email"}
+            {"class": "au-input", "placeholder": "Correo electrónico"}
         )
 
     def filter_by_name(self, queryset, name, value):
@@ -34,16 +34,16 @@ class LecturerFilter(django_filters.FilterSet):
 
 class StudentFilter(django_filters.FilterSet):
     id_no = django_filters.CharFilter(
-        field_name="student__username", lookup_expr="exact", label=""
+        field_name="student__username", lookup_expr="exact", label="Usuario"
     )
     name = django_filters.CharFilter(
-        field_name="student__name", method="filter_by_name", label=""
+        field_name="student__name", method="filter_by_name", label="Nombre"
     )
     email = django_filters.CharFilter(
-        field_name="student__email", lookup_expr="icontains", label=""
+        field_name="student__email", lookup_expr="icontains", label="Correo electrónico"
     )
     program = django_filters.CharFilter(
-        field_name="student__program", lookup_expr="icontains", label=""
+        field_name="student__program", lookup_expr="icontains", label="Programa"
     )
 
     class Meta:
@@ -60,16 +60,16 @@ class StudentFilter(django_filters.FilterSet):
 
         # Change html classes and placeholders
         self.filters["id_no"].field.widget.attrs.update(
-            {"class": "au-input", "placeholder": "ID No."}
+            {"class": "au-input", "placeholder": "Usuario"}
         )
         self.filters["name"].field.widget.attrs.update(
-            {"class": "au-input", "placeholder": "Name"}
+            {"class": "au-input", "placeholder": "Nombre"}
         )
         self.filters["email"].field.widget.attrs.update(
             {"class": "au-input", "placeholder": "Email"}
         )
         self.filters["program"].field.widget.attrs.update(
-            {"class": "au-input", "placeholder": "Program"}
+            {"class": "au-input", "placeholder": "Programa"}
         )
 
     def filter_by_name(self, queryset, name, value):

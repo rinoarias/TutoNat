@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 class ASCIIUsernameValidator(validators.RegexValidator):
     regex = r"^[a-zA-Z]+\/(...)\/(....)"
     message = _(
-        "Enter a valid username. This value may contain only English letters, "
-        "numbers, and @/./+/-/_ characters."
+        "Introduzca un nombre de usuario válido. Este valor sólo puede contener letras inglesas, "
+        "números y caracteres @/./+/-/_."
     )
     flags = re.ASCII

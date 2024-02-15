@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
-{% block title %}{{ title }} | Learning management system{% endblock title %}
+{% block title %}{{ title }} | TutoNat{% endblock title %}
 
 {% block content %}
 
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Students</li>
+      <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Estudiantes</li>
     </ol>
 </nav>
 
-<!-- <div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> Students</div> -->
+<!-- <div id="input-nav"><a href="{% url 'home' %}" class="primary1">Inicio</a> Students</div> -->
 
 {% if request.user.is_superuser %}
 <div class="manage-wrap">
-    <a class="btn btn-sm btn-primary" href="{% url 'add_student' %}"><i class="fas fa-plus"></i> Add Student</a>
+    <a class="btn btn-sm btn-primary" href="{% url 'add_student' %}"><i class="fas fa-plus"></i> Añadir Estudiante</a>
 </div>
 {% endif %}
 
-<div class="title-1"><i class="fas fa-user-graduate"></i>Students</div>
+<div class="title-1"><i class="fas fa-user-graduate"></i>Estudiantes</div>
 <br>
 <br>
 
@@ -31,12 +31,12 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th> ID No. </th>
-                <th> Full Name </th>
-                <th> Email </th>
-                <th> Program </th>
+                <th> Número de identificación </th>
+                <th> Nombre completo </th>
+                <th> Correo electrónico </th>
+                <th> Programa </th>
                 {% if request.user.is_superuser %}
-                <th> Action </th>
+                <th> Acción </th>
                 {% endif %}
             </tr>
         </thead>
@@ -56,8 +56,8 @@
                             <i class="fa fa-ellipsis-vertical"></i>
                         </button>
                         <ul class="dropdown-menu position-fixed">
-                          <li><a class="dropdown-item" href="{% url 'student_edit' student.student.pk %}"><i class="fas fa-edit"></i> Update</a></li>
-                          <li><a class="dropdown-item text-danger" href="{% url 'student_delete' student.pk %}"><i class="fas fa-trash-alt"></i> Delete</a></li>
+                          <li><a class="dropdown-item" href="{% url 'student_edit' student.student.pk %}"><i class="fas fa-edit"></i> Actualizar</a></li>
+                          <li><a class="dropdown-item text-danger" href="{% url 'student_delete' student.pk %}"><i class="fas fa-trash-alt"></i> Eliminar</a></li>
                         </ul>
                       </div>
                 </td>
@@ -71,7 +71,7 @@
                     {% if request.user.is_superuser %}
                     <a href="{% url 'add_student' %}">
                     <i class="primary" style="font-size: 22px;">
-                       Add Student Now.
+                        Añadir estudiante ahora.
                     </i>
                     {% endif %}
                     </a>

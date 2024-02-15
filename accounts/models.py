@@ -11,31 +11,31 @@ from .validators import ASCIIUsernameValidator
 
 
 # LEVEL_COURSE = "Level course"
-BACHLOAR_DEGREE = "Bachloar"
+BACHLOAR_DEGREE = "Bachiller"
 MASTER_DEGREE = "Master"
 
 LEVEL = (
     # (LEVEL_COURSE, "Level course"),
-    (BACHLOAR_DEGREE, "Bachloar Degree"),
-    (MASTER_DEGREE, "Master Degree"),
+    (BACHLOAR_DEGREE, "Título de Bachiller"),
+    (MASTER_DEGREE, "Máster Universitario"),
 )
 
-FATHER = "Father"
-MOTHER = "Mother"
-BROTHER = "Brother"
-SISTER = "Sister"
-GRAND_MOTHER = "Grand mother"
-GRAND_FATHER = "Grand father"
-OTHER = "Other"
+FATHER = "Padre"
+MOTHER = "Madre"
+BROTHER = "Hermano"
+SISTER = "Hermana"
+GRAND_MOTHER = "Abuela"
+GRAND_FATHER = "Abuelo"
+OTHER = "Otro"
 
 RELATION_SHIP = (
-    (FATHER, "Father"),
-    (MOTHER, "Mother"),
-    (BROTHER, "Brother"),
-    (SISTER, "Sister"),
-    (GRAND_MOTHER, "Grand mother"),
-    (GRAND_FATHER, "Grand father"),
-    (OTHER, "Other"),
+    (FATHER, "Padre"),
+    (MOTHER, "Madre"),
+    (BROTHER, "Hermano"),
+    (SISTER, "Hermana"),
+    (GRAND_MOTHER, "Abuela"),
+    (GRAND_FATHER, "Abuelo"),
+    (OTHER, "Otro"),
 )
 
 
@@ -55,7 +55,7 @@ class CustomUserManager(UserManager):
         return queryset
 
 
-GENDERS = (("M", "Male"), ("F", "Female"))
+GENDERS = (("M", "Masculino"), ("F", "Femenino"))
 
 
 class User(AbstractUser):
@@ -103,13 +103,13 @@ class User(AbstractUser):
     @property
     def get_user_role(self):
         if self.is_superuser:
-            role = "Admin"
+            role = "Administrador"
         elif self.is_student:
-            role = "Student"
+            role = "Estudiante"
         elif self.is_lecturer:
-            role = "Lecturer"
+            role = "Profesor"
         elif self.is_parent:
-            role = "Parent"
+            role = "Pariente"
 
         return role
 

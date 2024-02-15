@@ -13,6 +13,11 @@ class NewsAndEventsForm(forms.ModelForm):
             "summary",
             "posted_as",
         )
+        labels = {
+            'title': 'Título',
+            'summary': 'Resumen',
+            'posted_as': 'Publicado como',
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -28,12 +33,18 @@ class SessionForm(forms.ModelForm):
                 "type": "date",
             }
         ),
+        label="Próxima sesión comienza",
         required=True,
     )
 
     class Meta:
         model = Session
         fields = ["session", "is_current_session", "next_session_begins"]
+        labels = {
+            'session': 'Sesión',
+            'is_current_session': '¿Es la sesión actual?',
+            'next_session_begins': 'Próxima sesión comienza',
+        }
 
 
 class SemesterForm(forms.ModelForm):
@@ -44,16 +55,16 @@ class SemesterForm(forms.ModelForm):
                 "class": "browser-default custom-select",
             },
         ),
-        label="semester",
+        label="Semestre",
     )
     is_current_semester = forms.CharField(
         widget=forms.Select(
-            choices=((True, "Yes"), (False, "No")),
+            choices=((True, "Sí"), (False, "No")),
             attrs={
                 "class": "browser-default custom-select",
             },
         ),
-        label="is current semester ?",
+        label="¿Es el semestre actual?",
     )
     session = forms.ModelChoiceField(
         queryset=Session.objects.all(),
@@ -62,6 +73,7 @@ class SemesterForm(forms.ModelForm):
                 "class": "browser-default custom-select",
             }
         ),
+        label="Sesión",
         required=True,
     )
 
@@ -72,9 +84,16 @@ class SemesterForm(forms.ModelForm):
                 "class": "form-control",
             }
         ),
+        label="Próxima sesión comienza",
         required=True,
     )
 
     class Meta:
         model = Semester
         fields = ["semester", "is_current_semester", "session", "next_semester_begins"]
+        labels = {
+            'semester': 'Semestre',
+            'is_current_semester': '¿Es el semestre actual?',
+            'session': 'Sesión',
+            'next_semester_begins': 'Próximo semestre comienza',
+        }

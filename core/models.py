@@ -4,22 +4,22 @@ from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import AbstractUser
 from django.db.models import Q
 
-NEWS = "News"
-EVENTS = "Event"
+NEWS = "Noticias"
+EVENTS = "Eventos"
 
 POST = (
-    (NEWS, "News"),
-    (EVENTS, "Event"),
+    (NEWS, "Noticias"),
+    (EVENTS, "Eventos"),
 )
 
-FIRST = "First"
-SECOND = "Second"
-THIRD = "Third"
+FIRST = "Primero"
+SECOND = "Segundo"
+THIRD = "Tercero"
 
 SEMESTER = (
-    (FIRST, "First"),
-    (SECOND, "Second"),
-    (THIRD, "Third"),
+    (FIRST, "Primero"),
+    (SECOND, "Segundo"),
+    (THIRD, "Tercero"),
 )
 
 

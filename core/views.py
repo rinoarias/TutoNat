@@ -15,7 +15,7 @@ from .models import NewsAndEvents, ActivityLog, Session, Semester
 def home_view(request):
     items = NewsAndEvents.objects.all().order_by("-updated_date")
     context = {
-        "title": "News & Events",
+        "title": "Noticias y eventos",
         "items": items,
     }
     return render(request, "core/index.html", context)
@@ -27,9 +27,9 @@ def dashboard_view(request):
     logs = ActivityLog.objects.all().order_by("-created_at")[:10]
     gender_count = Student.get_gender_count()
     context = {
-        "student_count": User.objects.get_student_count(),
-        "lecturer_count": User.objects.get_lecturer_count(),
-        "superuser_count": User.objects.get_superuser_count(),
+        "student_count": User.get_student_count(),
+        "lecturer_count": User.get_lecturer_count(),
+        "superuser_count": User.get_superuser_count(),
         "males_count": gender_count["M"],
         "females_count": gender_count["F"],
         "logs": logs,
@@ -45,17 +45,17 @@ def post_add(request):
         if form.is_valid():
             form.save()
 
-            messages.success(request, (title + " has been uploaded."))
+            messages.success(request, (title + " se ha cargado."))
             return redirect("home")
         else:
-            messages.error(request, "Please correct the error(s) below.")
+            messages.error(request, "Por favor, corrija el(los) error(es) siguiente(s).")
     else:
         form = NewsAndEventsForm()
     return render(
         request,
         "core/post_add.html",
         {
-            "title": "Add Post",
+            "title": "Añadir post",
             "form": form,
         },
     )
@@ -71,17 +71,17 @@ def edit_post(request, pk):
         if form.is_valid():
             form.save()
 
-            messages.success(request, (title + " has been updated."))
+            messages.success(request, (title + " se ha actualizado."))
             return redirect("home")
         else:
-            messages.error(request, "Please correct the error(s) below.")
+            messages.error(request, "Por favor, corrija el(los) error(es) siguiente(s).")
     else:
         form = NewsAndEventsForm(instance=instance)
     return render(
         request,
         "core/post_add.html",
         {
-            "title": "Edit Post",
+            "title": "Editar Post",
             "form": form,
         },
     )
@@ -93,7 +93,7 @@ def delete_post(request, pk):
     post = get_object_or_404(NewsAndEvents, pk=pk)
     title = post.title
     post.delete()
-    messages.success(request, (title + " has been deleted."))
+    messages.success(request, (title + " se ha eliminado."))
     return redirect("home")
 
 
@@ -132,7 +132,7 @@ def session_add_view(request):
                     form.save()
             else:
                 form.save()
-            messages.success(request, "Session added successfully. ")
+            messages.success(request, "Sesión añadida con éxito. ")
             return redirect("session_list")
 
     else:
@@ -158,13 +158,13 @@ def session_update_view(request, pk):
 
             if form.is_valid():
                 form.save()
-                messages.success(request, "Session updated successfully. ")
+                messages.success(request, "Sesión actualizada correctamente. ")
                 return redirect("session_list")
         else:
             form = SessionForm(request.POST, instance=session)
             if form.is_valid():
                 form.save()
-                messages.success(request, "Session updated successfully. ")
+                messages.success(request, "Sesión actualizada correctamente. ")
                 return redirect("session_list")
 
     else:
@@ -178,11 +178,11 @@ def session_delete_view(request, pk):
     session = get_object_or_404(Session, pk=pk)
 
     if session.is_current_session:
-        messages.error(request, "You cannot delete current session")
+        messages.error(request, "No se puede borrar la sesión actual")
         return redirect("session_list")
     else:
         session.delete()
-        messages.success(request, "Session successfully deleted")
+        messages.success(request, "Sesión eliminada correctamente")
     return redirect("session_list")
 
 
@@ -223,9 +223,9 @@ def semester_add_view(request):
                         messages.error(
                             request,
                             semester
-                            + " semester in "
+                            + " semestre en "
                             + session.session
-                            + " session already exist",
+                            + " la sesión ya existe",
                         )
                         return redirect("add_semester")
                 except:
@@ -252,11 +252,11 @@ def semester_add_view(request):
                     set_session.is_current_session = True
                     set_session.save()
                     form.save()
-                    messages.success(request, "Semester added successfully.")
+                    messages.success(request, "Semestre añadido correctamente.")
                     return redirect("semester_list")
 
             form.save()
-            messages.success(request, "Semester added successfully. ")
+            messages.success(request, "Semestre añadido correctamente. ")
             return redirect("semester_list")
     else:
         form = SemesterForm()
@@ -284,7 +284,7 @@ def semester_update_view(request, pk):
                 set_session.is_current_session = True
                 set_session.save()
                 form.save()
-                messages.success(request, "Semester updated successfully !")
+                messages.success(request, "Semestre actualizado correctamente!")
                 return redirect("semester_list")
         else:
             form = SemesterForm(request.POST, instance=semester)
@@ -302,9 +302,9 @@ def semester_update_view(request, pk):
 def semester_delete_view(request, pk):
     semester = get_object_or_404(Semester, pk=pk)
     if semester.is_current_semester:
-        messages.error(request, "You cannot delete current semester")
+        messages.error(request, "No se puede borrar el semestre en curso")
         return redirect("semester_list")
     else:
         semester.delete()
-        messages.success(request, "Semester successfully deleted")
+        messages.success(request, "Semestre eliminado con éxito")
     return redirect("semester_list")

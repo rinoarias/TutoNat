@@ -28,10 +28,10 @@ def register(request):
         form = StudentAddForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, f"Account created successfuly.")
+            messages.success(request, f"Cuenta creada correctamente.")
         else:
             messages.error(
-                request, f"Somthing is not correct, please fill all fields correctly."
+                request, f"Algo no es correcto, por favor rellene todos los campos correctamente."
             )
     else:
         form = StudentAddForm(request.POST)
@@ -112,7 +112,7 @@ def profile_single(request, id):
         context = {
             "title": user.get_full_name,
             "user": user,
-            "user_type": "Lecturer",
+            "user_type": "Profesor",
             "courses": courses,
             "current_session": current_session,
             "current_semester": current_semester,
@@ -126,7 +126,7 @@ def profile_single(request, id):
         context = {
             "title": user.get_full_name,
             "user": user,
-            "user_type": "student",
+            "user_type": "Estudiante",
             "courses": courses,
             "student": student,
             "current_session": current_session,
@@ -164,17 +164,17 @@ def profile_update(request):
         form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            messages.success(request, "Your profile has been updated successfully.")
+            messages.success(request, "Su perfil se ha actualizado correctamente.")
             return redirect("profile")
         else:
-            messages.error(request, "Please correct the error(s) below.")
+            messages.error(request, "Por favor, corrija el(los) error(es) siguiente(s).")
     else:
         form = ProfileUpdateForm(instance=request.user)
     return render(
         request,
         "setting/profile_info_change.html",
         {
-            "title": "Setting",
+            "title": "Configuración",
             "form": form,
         },
     )
@@ -187,10 +187,10 @@ def change_password(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
-            messages.success(request, "Your password was successfully updated!")
+            messages.success(request, "Tu contraseña se ha actualizado correctamente.")
             return redirect("profile")
         else:
-            messages.error(request, "Please correct the error(s) below. ")
+            messages.error(request, "Corrija el error o los errores que figuran a continuación.")
     else:
         form = PasswordChangeForm(request.user)
     return render(
@@ -218,18 +218,18 @@ def staff_add_view(request):
             form.save()
             messages.success(
                 request,
-                "Account for lecturer "
+                "La cuenta para el profesor "
                 + first_name
                 + " "
                 + last_name
-                + " has been created.",
+                + " ha sido creada.",
             )
             return redirect("lecturer_list")
     else:
         form = StaffAddForm()
 
     context = {
-        "title": "Lecturer Add",
+        "title": "Añadir Profesor",
         "form": form,
     }
 
@@ -246,17 +246,17 @@ def edit_staff(request, pk):
         if form.is_valid():
             form.save()
 
-            messages.success(request, "Lecturer " + full_name + " has been updated.")
+            messages.success(request, "El profesor " + full_name + " ha sido actualizado.")
             return redirect("lecturer_list")
         else:
-            messages.error(request, "Please correct the error below.")
+            messages.error(request, "Por favor, corrija el error.")
     else:
         form = ProfileUpdateForm(instance=instance)
     return render(
         request,
         "accounts/edit_lecturer.html",
         {
-            "title": "Edit Lecturer",
+            "title": "Editar Profesor",
             "form": form,
         },
     )
@@ -271,7 +271,7 @@ class LecturerFilterView(FilterView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Lecturers"
+        context["title"] = "Profesores"
         return context
 
 
@@ -289,7 +289,7 @@ def delete_staff(request, pk):
     lecturer = get_object_or_404(User, pk=pk)
     full_name = lecturer.get_full_name
     lecturer.delete()
-    messages.success(request, "Lecturer " + full_name + " has been deleted.")
+    messages.success(request, "El profesor " + full_name + " ha sido eliminado.")
     return redirect("lecturer_list")
 
 
@@ -310,18 +310,18 @@ def student_add_view(request):
             form.save()
             messages.success(
                 request,
-                "Account for " + first_name + " " + last_name + " has been created.",
+                "Se ha creado la cuenta de " + first_name + " " + last_name + ".",
             )
             return redirect("student_list")
         else:
-            messages.error(request, "Correct the error(s) below.")
+            messages.error(request, "Corrija el error o los errores que figuran a continuación.")
     else:
         form = StudentAddForm()
 
     return render(
         request,
         "accounts/add_student.html",
-        {"title": "Add Student", "form": form},
+        {"title": "Añadir Estudiante", "form": form},
     )
 
 
@@ -336,17 +336,17 @@ def edit_student(request, pk):
         if form.is_valid():
             form.save()
 
-            messages.success(request, ("Student " + full_name + " has been updated."))
+            messages.success(request, ("El estudiante " + full_name + " ha sido actualizado."))
             return redirect("student_list")
         else:
-            messages.error(request, "Please correct the error below.")
+            messages.error(request, "Por favor, corrija el error.")
     else:
         form = ProfileUpdateForm(instance=instance)
     return render(
         request,
         "accounts/edit_student.html",
         {
-            "title": "Edit-profile",
+            "title": "Editar perfil",
             "form": form,
         },
     )
@@ -361,7 +361,7 @@ class StudentListView(FilterView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Students"
+        context["title"] = "Estudiantes"
         return context
 
 
@@ -371,7 +371,7 @@ def delete_student(request, pk):
     student = get_object_or_404(Student, pk=pk)
     # full_name = student.user.get_full_name
     student.delete()
-    messages.success(request, "Student has been deleted.")
+    messages.success(request, "El estudiante ha sido eliminado.")
     return redirect("student_list")
 
 

@@ -7,6 +7,11 @@ class ProgramForm(forms.ModelForm):
     class Meta:
         model = Program
         fields = "__all__"
+        labels = {
+            'title': 'Título',
+            'summary': 'Resumen',
+            # Añade etiquetas personalizadas para otros campos si es necesario
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -18,6 +23,18 @@ class CourseAddForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = "__all__"
+        labels = {
+            'title': 'Título',
+            'code': 'Código',
+            'credit': 'Crédito',
+            'summary': 'Resumen',
+            'program': 'Programa',
+            'level': 'Nivel',
+            'year': 'Año',
+            'semester': 'Semestre',
+            'is_elective': '¿Es optativa?',
+            # Añade etiquetas personalizadas para otros campos si es necesario
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -39,11 +56,12 @@ class CourseAllocationForm(forms.ModelForm):
             attrs={"class": "browser-default checkbox"}
         ),
         required=True,
+        label="Cursos",
     )
     lecturer = forms.ModelChoiceField(
         queryset=User.objects.filter(is_lecturer=True),
         widget=forms.Select(attrs={"class": "browser-default custom-select"}),
-        label="lecturer",
+        label="Profesor(a)",
     )
 
     class Meta:
@@ -61,11 +79,12 @@ class EditCourseAllocationForm(forms.ModelForm):
         queryset=Course.objects.all().order_by("level"),
         widget=forms.CheckboxSelectMultiple,
         required=True,
+        label="Cursos",
     )
     lecturer = forms.ModelChoiceField(
         queryset=User.objects.filter(is_lecturer=True),
         widget=forms.Select(attrs={"class": "browser-default custom-select"}),
-        label="lecturer",
+        label="Profesor(a)",
     )
 
     class Meta:

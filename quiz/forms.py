@@ -35,8 +35,8 @@ class QuizAddForm(forms.ModelForm):
     questions = forms.ModelMultipleChoiceField(
         queryset=Question.objects.all().select_subclasses(),
         required=False,
-        label=_("Questions"),
-        widget=FilteredSelectMultiple(verbose_name=_("Questions"), is_stacked=False),
+        label=_("Preguntas"),
+        widget=FilteredSelectMultiple(verbose_name=_("Preguntas"), is_stacked=False),
     )
 
     def __init__(self, *args, **kwargs):

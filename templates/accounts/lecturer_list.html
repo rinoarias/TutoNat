@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
-{% block title %}{{ title }} | Learning management system{% endblock title %}
+{% block title %}{{ title }} | TutoNat{% endblock title %}
 
 {% block content %}
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Lecturers</li>
+      <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Profesores</li>
     </ol>
 </nav>
 
 {% if request.user.is_superuser %}
 <div class="manage-wrap">
-    <a class="btn btn-primary" href="{% url 'add_lecturer' %}"><i class="fas fa-plus"></i>Add Lecturer</a>
+    <a class="btn btn-primary" href="{% url 'add_lecturer' %}"><i class="fas fa-plus"></i>Añadir profesor</a>
 </div>
 {% endif %}
 
-<p class="title-1"><i class="fas fa-chalkboard-teacher"></i>Lecturers</p>
+<p class="title-1"><i class="fas fa-chalkboard-teacher"></i>Profesores</p>
 
 {% include 'snippets/messages.html' %}
 {% include 'snippets/filter_form.html' %}
@@ -26,14 +26,14 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th> ID No. </th>
-                <th> Full Name </th>
-                <th> Email </th>
-                <th> Mob No. </th>
-                <th> Address/city </th>
-                <th> Last login </th>
+                <th> Número de identificación </th>
+                <th> Nombre completo </th>
+                <th> Correo electrónico </th>
+                <th> Número de móvil </th>
+                <th> Dirección/ciudad </th>
+                <th> Última conexión </th>
                 {% if request.user.is_superuser %}
-                <th> Action </th>
+                <th> Acción </th>
                 {% endif %}
             </tr>
         </thead>
@@ -54,8 +54,8 @@
                             <i class="fa fa-ellipsis-vertical"></i>
                         </button>
                         <ul class="dropdown-menu position-fixed">
-                          <li><a class="dropdown-item" href="{% url 'staff_edit' pk=lecturer.pk %}"><i class="fas fa-edit"></i> Update</a></li>
-                          <li><a class="dropdown-item text-danger" href="{% url 'lecturer_delete' pk=lecturer.pk %}"><i class="fas fa-trash-alt"></i> Delete</a></li>
+                          <li><a class="dropdown-item" href="{% url 'staff_edit' pk=lecturer.pk %}"><i class="fas fa-edit"></i> Actualizar</a></li>
+                          <li><a class="dropdown-item text-danger" href="{% url 'lecturer_delete' pk=lecturer.pk %}"><i class="fas fa-trash-alt"></i> Eliminar</a></li>
                         </ul>
                       </div>
                 </td>
@@ -69,7 +69,7 @@
                     {% if request.user.is_superuser %}
                     <a href="{% url 'add_lecturer' %}">
                     <i class="primary" style="font-size: 22px;">
-                       Add Lecturer Now.
+                        Añadir profesor ahora.
                     </i>
                     {% endif %}
                     </a>

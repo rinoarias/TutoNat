@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Search result for {{ query }} | Learning management system{% endblock title %}
+{% block title %}Resultado de la búsqueda para {{ query }} | TutoNat{% endblock title %}
 
 {% load class_name %}
 
@@ -7,8 +7,8 @@
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Search</li>
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Buscar</li>
     </ol>
 </nav>  
 
@@ -39,13 +39,13 @@
 </style>
 
 <div class="card p-3" style="box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3); border-radius: 10px;">
-    <h5 class="text-muted m-0">{{ count }} result{{ count|pluralize }} for <b><em class="text-orange"> {{ query }}</em></b></h5>
+    <h5 class="text-muted m-0">{{ count }} resultados{{ count|pluralize }} para <b><em class="text-orange"> {{ query }}</em></b></h5>
     <hr>
     {% for object in object_list %}
         {% with object|class_name as klass %}
         {% if klass == "Program" %}
             <div class="session-wrapper">
-                <div class="session"><div class="info-text bg-orange">Program</div></div>
+                <div class="session"><div class="info-text bg-orange">Programa</div></div>
             </div>
             <div class="col-12 class-item">
                 <!-- <p><b>Program of</b> {{ object }}</p> -->
@@ -55,37 +55,37 @@
 
         {% elif klass == "Course" %}
             <div class="session-wrapper">
-                <div class="session"><div class="info-text bg-orange">Course</div></div>
+                <div class="session"><div class="info-text bg-orange">Curso</div></div>
             </div>
             <div class="col-12 class-item">
-                <p><b>Program of</b> {{ object.program }}</p>
+                <p><b>Programa de</b> {{ object.program }}</p>
                 <h4><a href="{{ object.get_absolute_url }}"><b>{{ object }}</b></a></h4>
                 <p>{{ object.summary }}</p>
             </div><hr>
             
         {% elif klass == "NewsAndEvents" %}
             <div class="session-wrapper">
-                <div class="session"><div class="info-text bg-orange">News And Events</div></div>
+                <div class="session"><div class="info-text bg-orange">Noticias y eventos</div></div>
             </div>
             <div class="col-12 class-item">
-                <p><b>Date: </b> {{ object.updated_date|timesince }} ago</p>
+                <p><b>Fecha: </b> {{ object.updated_date|timesince }} atrás</p>
                 <h4><a href="{{ object.get_absolute_url }}"><b>{{ object.title }}</b></a></h4>
                 <p>{{ object.summary }}</p>
             </div><hr>
 
         {% elif klass == "Quiz" %}
             <div class="session-wrapper">
-                <div class="session"><div class="info-text bg-orange">Quiz</div></div>
+                <div class="session"><div class="info-text bg-orange">Cuestionario</div></div>
             </div>
             <div class="col-12 class-item">
-                <p>{{ object.category }} quiz,  <b>Course:</b> {{ object.course }}</p>
+                <p>{{ object.category }} cuestionario,  <b>Curso:</b> {{ object.course }}</p>
                 <h4><a href="{{ object.get_absolute_url }}"><b>{{ object.title }}</b></a></h4>
                 <p>{{ object.description }}</p>
             </div><hr>
 
         {% else %}
             <div class="session-wrapper">
-                <div class="session"><div class="info-text bg-orange">Program</div></div>
+                <div class="session"><div class="info-text bg-orange">Programa</div></div>
             </div>
             <div class="col-12 col-lg-8 offset-lg-4">
                 <a href="{{ object.get_absolute_url }}" class="class-item d-flex">{{ object }} | {{ object|class_name }}</a>
@@ -106,8 +106,8 @@
     
         <div class="input-group form-group-no-border mx-auto" style="margin-bottom: 0px; font-size: 32px;">
             <input type="text" name="q" data-toggle="popover" data-placement="bottom" 
-            data-content="Press enter to search" class="form-control cfe-nav" 
-            placeholder="Search..." value="{{ request.GET.q }}" data-original-title="" title="" 
+            data-content="Pulse Intro para buscar" class="form-control cfe-nav" 
+            placeholder="Buscar..." value="{{ request.GET.q }}" data-original-title="" title="" 
             autofocus="autofocus" required>
             <button type="submit" class="btn btn-dark">
                 <i class="fa fa-search" aria-hidden="true"></i>
@@ -118,12 +118,12 @@
 
     </div>
     <div class="col-12 pl-5">
-    <h5>Search by:</h5>
+    <h5>Buscar por:</h5>
     <ul class="pl-3">
-        <li>Program <span class="text-orange">&gt;</span> Title or Description</li>
-        <li>Course <span class="text-orange">&gt;</span> Title, Code or Description</li>
-        <li>News And Events <span class="text-orange">&gt;</span> Title, Description or just by typing "news" or "event"</li>
-        <li>Quiz <span class="text-orange">&gt;</span> Title, Description or Category(practice, assignment and exam)</li>
+        <li>Programa <span class="text-orange">&gt;</span> Título o descripción</li>
+        <li>Curso <span class="text-orange">&gt;</span> Título, código o descripción</li>
+        <li>Noticias y Eventos <span class="text-orange">&gt;</span> Título, descripción o simplemente escribiendo "noticias" o "evento".</li>
+        <li>Cuestionario <span class="text-orange">&gt;</span> Título, Descripción o Categoría(práctica, tarea y examen)</li>
     </ul>
     </div>
 </div>

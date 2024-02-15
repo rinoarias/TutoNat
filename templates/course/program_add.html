@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{{ title }} | Learning management system{% endblock title %}
+{% block title %}{{ title }} | TutoNat{% endblock title %}
 {% load crispy_forms_tags %}
 {% load static %}
 
@@ -7,9 +7,9 @@
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'programs' %}">Programs</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Program Form</li>
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'programs' %}">Programas</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Formulario del Programa</li>
     </ol>
 </nav>
 
@@ -18,11 +18,11 @@
 <div class="row">
 <div class="col-md-6 mx-auto">
     <div class="card">
-        <p class="form-title">Program Add Form</p>
+        <p class="form-title">Formulario para Programa</p>
         <div class="p-3"><br>
             <form action="" method="POST">{% csrf_token %}
                 {{ form|crispy }}
-                <input class="btn btn-primary" type="submit" value="Save">
+                <input class="btn btn-primary" type="submit" value="Guardar">
             </form>
         </div>
     </div>

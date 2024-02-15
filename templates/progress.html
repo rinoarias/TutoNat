@@ -1,30 +1,30 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %} {% trans "Progress Page" %} | Learning management system {% endblock %}
-{% block description %} {% trans "User Progress Page" %} {% endblock %}
+{% block title %} {% trans "Página de progreso" %} | TutoNat {% endblock %}
+{% block description %} {% trans "Página de progreso del usuario" %} {% endblock %}
 
 {% block content %}
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Progress Page</li>
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Página de progreso</li>
     </ol>
 </nav>
 
   {% if cat_scores %}
 
-  <div class="header-title text-center">{% trans "Question Category Scores" %}</div>
+  <div class="header-title text-center">{% trans "Puntuación por categoría de pregunta" %}</div>
   <div class="title-line"></div>
 
   <table class="table table-bordered table-striped">
 
 	<thead>
 	  <tr>
-		<th>{% trans "Category" %}</th>
-		<th>{% trans "Correctly answererd" %}</th>
-		<th>{% trans "Incorrect" %}</th>
+		<th>{% trans "Categoría" %}</th>
+		<th>{% trans "Respuestas correctas" %}</th>
+		<th>{% trans "Incorrecta" %}</th>
 		<th>%</th>
 	  </tr>
 	</thead>
@@ -53,21 +53,21 @@
 
   <hr>
 
-  <div class="header-title-xl">{% trans "Previous exam papers" %}</div>
+  <div class="header-title-xl">{% trans "Documentos de exámenes anteriores" %}</div>
   <p class="lead text-muted">
-	{% trans "Below are the results of exams that you have sat." %}
+	{% trans "A continuación figuran los resultados de los exámenes a los que se ha presentado." %}
   </p>
-  <div class="info-text bg-danger mb-2">Total complete exams: {{ exams_counter }}</div>
+  <div class="info-text bg-danger mb-2">Total de exámenes completos: {{ exams_counter }}</div>
 <div class="table-responsive">
   <table class="table table-bordered table-striped">
 
 	<thead>
 	  <tr>
 		<th>#</th>
-		<th>{% trans "Quiz Title" %}</th>
-		<th>{% trans "Score" %}</th>
-		<th>{% trans "Possible Score" %}</th>
-		<th>Out of 100%</th>
+		<th>{% trans "Título del cuestionario" %}</th>
+		<th>{% trans "Puntuación" %}</th>
+		<th>{% trans "Puntuación posible" %}</th>
+		<th>Sobre 100%</th>
 	  </tr>
 	</thead>
 
@@ -91,7 +91,7 @@
 </div>
   {% endif %}
   {% if not cat_scores and not exams %}
- 	<div class="col-12 p-4 text-center"><h3><i class="far fa-frown"></i></h3> No recordes yet. Try to do some quizzes in your course.</div> 
+ 	<div class="col-12 p-4 text-center"><h3><i class="far fa-frown"></i></h3> Aún no hay registros. Trate de hacer algunas pruebas en su curso.</div> 
   {% endif %}
 
 {% endblock %}

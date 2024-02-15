@@ -26,8 +26,8 @@ class UserAdmin(admin.ModelAdmin):
 
     class Meta:
         managed = True
-        verbose_name = "User"
-        verbose_name_plural = "Users"
+        verbose_name = "Usuario"
+        verbose_name_plural = "Usuarios"
 
 
 admin.site.register(User, UserAdmin)

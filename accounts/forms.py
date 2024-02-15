@@ -22,7 +22,7 @@ class StaffAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Username",
+        label="Usuario",
         required=False,
     )
 
@@ -34,7 +34,7 @@ class StaffAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="First Name",
+        label="Nombre",
     )
 
     last_name = forms.CharField(
@@ -45,7 +45,7 @@ class StaffAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Last Name",
+        label="Apellido",
     )
 
     address = forms.CharField(
@@ -56,7 +56,7 @@ class StaffAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Address",
+        label="Dirección",
     )
 
     phone = forms.CharField(
@@ -67,7 +67,7 @@ class StaffAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Mobile No.",
+        label="No. Telefónico",
     )
 
     email = forms.CharField(
@@ -89,7 +89,7 @@ class StaffAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Password",
+        label="Contraseña",
         required=False,
     )
 
@@ -101,7 +101,7 @@ class StaffAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Password Confirmation",
+        label="Confirmar contraseña",
         required=False,
     )
 
@@ -135,9 +135,9 @@ class StaffAddForm(UserCreationForm):
 
             # Send email with the generated credentials
             send_mail(
-                "Your Django LMS account credentials",
-                f"Your username: {generated_username}\nYour password: {generated_password}",
-                "from@example.com",
+                "Las credenciales de tu cuenta TutoNat",
+                f"Tu usuario: {generated_username}\nYTu contraseña: {generated_password}",
+                settings.EMAIL_FROM_ADDRESS,
                 [user.email],
                 fail_silently=False,
             )
@@ -151,7 +151,7 @@ class StudentAddForm(UserCreationForm):
         widget=forms.TextInput(
             attrs={"type": "text", "class": "form-control", "id": "username_id"}
         ),
-        label="Username",
+        label="Usuario",
         required=False,
     )
     address = forms.CharField(
@@ -162,7 +162,7 @@ class StudentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Address",
+        label="Dirección",
     )
 
     phone = forms.CharField(
@@ -173,7 +173,7 @@ class StudentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Mobile No.",
+        label="No. Telefónico",
     )
 
     first_name = forms.CharField(
@@ -184,7 +184,7 @@ class StudentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="First name",
+        label="Nombre",
     )
 
     last_name = forms.CharField(
@@ -195,7 +195,7 @@ class StudentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Last name",
+        label="Apellidos",
     )
 
     gender = forms.CharField(
@@ -205,7 +205,9 @@ class StudentAddForm(UserCreationForm):
                 "class": "browser-default custom-select form-control",
             },
         ),
+        label = "Género",
     )
+    
 
     level = forms.CharField(
         widget=forms.Select(
@@ -214,6 +216,7 @@ class StudentAddForm(UserCreationForm):
                 "class": "browser-default custom-select form-control",
             },
         ),
+        label = "Nivel",
     )
 
     program = forms.ModelChoiceField(
@@ -221,7 +224,7 @@ class StudentAddForm(UserCreationForm):
         widget=forms.Select(
             attrs={"class": "browser-default custom-select form-control"}
         ),
-        label="Program",
+        label="Programa",
     )
 
     email = forms.EmailField(
@@ -231,7 +234,8 @@ class StudentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Email Address",
+        label="Correo electrónico",
+        required=True
     )
 
     password1 = forms.CharField(
@@ -242,7 +246,7 @@ class StudentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Password",
+        label="Contraseña",
         required=False,
     )
 
@@ -254,7 +258,7 @@ class StudentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Password Confirmation",
+        label="Confirmación de contraseña",
         required=False,
     )
 
@@ -300,8 +304,8 @@ class StudentAddForm(UserCreationForm):
 
             # Send email with the generated credentials
             send_mail(
-                "Your Django LMS account credentials",
-                f"Your ID: {generated_username}\nYour password: {generated_password}",
+                "Las credenciales de tu cuenta de TutoNat",
+                f"Tu usuario: {generated_username}\nTu contraseña: {generated_password}",
                 settings.EMAIL_FROM_ADDRESS,
                 [user.email],
                 fail_silently=False,
@@ -318,7 +322,7 @@ class ProfileUpdateForm(UserChangeForm):
                 "class": "form-control",
             }
         ),
-        label="Email Address",
+        label="Correo electrónico",
     )
 
     first_name = forms.CharField(
@@ -328,7 +332,7 @@ class ProfileUpdateForm(UserChangeForm):
                 "class": "form-control",
             }
         ),
-        label="First Name",
+        label="Nombre",
     )
 
     last_name = forms.CharField(
@@ -338,7 +342,7 @@ class ProfileUpdateForm(UserChangeForm):
                 "class": "form-control",
             }
         ),
-        label="Last Name",
+        label="Apellidos",
     )
 
     gender = forms.CharField(
@@ -348,6 +352,7 @@ class ProfileUpdateForm(UserChangeForm):
                 "class": "browser-default custom-select form-control",
             },
         ),
+        label = "Género",
     )
 
     phone = forms.CharField(
@@ -357,7 +362,7 @@ class ProfileUpdateForm(UserChangeForm):
                 "class": "form-control",
             }
         ),
-        label="Phone No.",
+        label="No. Teléfono",
     )
 
     address = forms.CharField(
@@ -367,7 +372,7 @@ class ProfileUpdateForm(UserChangeForm):
                 "class": "form-control",
             }
         ),
-        label="Address / city",
+        label="Dirección / ciudad",
     )
 
     class Meta:
@@ -387,7 +392,7 @@ class EmailValidationOnForgotPassword(PasswordResetForm):
     def clean_email(self):
         email = self.cleaned_data["email"]
         if not User.objects.filter(email__iexact=email, is_active=True).exists():
-            msg = "There is no user registered with the specified E-mail address. "
+            msg = "No hay ningún usuario registrado con la dirección de correo electrónico especificada. "
             self.add_error("email", msg)
             return email
 
@@ -401,7 +406,7 @@ class ParentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Username",
+        label="Usuario",
     )
     address = forms.CharField(
         max_length=30,
@@ -411,7 +416,7 @@ class ParentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Address",
+        label="Dirección",
     )
 
     phone = forms.CharField(
@@ -422,7 +427,7 @@ class ParentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Mobile No.",
+        label="No. Telefónico",
     )
 
     first_name = forms.CharField(
@@ -433,7 +438,7 @@ class ParentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="First name",
+        label="Nombre",
     )
 
     last_name = forms.CharField(
@@ -444,7 +449,7 @@ class ParentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Last name",
+        label="Apellidos",
     )
 
     email = forms.EmailField(
@@ -454,7 +459,7 @@ class ParentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Email Address",
+        label="Correo electrónico",
     )
 
     student = forms.ModelChoiceField(
@@ -462,7 +467,7 @@ class ParentAddForm(UserCreationForm):
         widget=forms.Select(
             attrs={"class": "browser-default custom-select form-control"}
         ),
-        label="Student",
+        label="Estudiante",
     )
 
     relation_ship = forms.CharField(
@@ -482,7 +487,7 @@ class ParentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Password",
+        label="Contraseña",
     )
 
     password2 = forms.CharField(
@@ -493,7 +498,7 @@ class ParentAddForm(UserCreationForm):
                 "class": "form-control",
             }
         ),
-        label="Password Confirmation",
+        label="Confirmación de contraseña",
     )
 
     # def validate_email(self):

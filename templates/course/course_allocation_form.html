@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{{ title }} | Learning management system{% endblock title %}
+{% block title %}{{ title }} | TutoNat{% endblock title %}
 {% load crispy_forms_tags %}
 {% load static %}
 
@@ -7,9 +7,9 @@
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'course_allocation_view' %}">Course Allocations</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Allocation Form</li>
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'course_allocation_view' %}">Asignación de cursos</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Formulario de asignación</li>
     </ol>
 </nav>
 
@@ -30,7 +30,7 @@
 <div class="row">
     <div class="col-md-6 mx-auto">
         <div class="card">
-            <p class="form-title">Course Allocation Form</p>
+            <p class="form-title">Formulario de asignación de cursos</p>
             <div class="p-3">
                 <form action="" method="POST">{% csrf_token %}
                     <!-- {{ form|crispy }} -->
@@ -45,7 +45,7 @@
                         
                     {% for course in form.courses.all %}{{ course }}{% endfor %}
 
-                    <input class="btn btn-outline-primary" type="submit" value="Save">
+                    <input class="btn btn-outline-primary" type="submit" value="Guardar">
                 </form>
             </div>
         </div>

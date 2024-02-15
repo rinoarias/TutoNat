@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
-{% block title %}{{ title }} | Learning management system{% endblock title %}
+{% block title %}{{ title }} | TutoNat{% endblock title %}
 
 {% block content %}
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Semester list</li>
+      <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Listado de semestres</li>
     </ol>
 </nav>
 
 {% if request.user.is_superuser %}
 <div class="manage-wrap">
-    <a class="btn btn-primary" href="{% url 'add_semester' %}"><i class="fas fa-plus"></i>Add New Semester</a>
+    <a class="btn btn-primary" href="{% url 'add_semester' %}"><i class="fas fa-plus"></i>Añadir nuevo semestre</a>
 </div>
 {% endif %}
 
-<div class="title-1"><i class="fas fa-calendar-alt"></i>Semester List</div>
+<div class="title-1"><i class="fas fa-calendar-alt"></i>Lista de semestres</div>
 
 {% if messages %}
 {% for message in messages %}
@@ -37,12 +37,12 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th> Semester </th>
-                <th> Is Current semester </th>
-                <th> Session </th>
-                <th> Next Semester Begins </th>
+                <th> Semestre </th>
+                <th> Es semestre actual </th>
+                <th> Sesión </th>
+                <th> Comienza el próximo semestre </th>
                 {% if request.user.is_superuser %}
-                <th> Actions </th>
+                <th> Acciones </th>
                 {% endif %}
             </tr>
         </thead>
@@ -65,9 +65,9 @@
                 {% if request.user.is_superuser %}
                 <td>
                     <div class="update-delete">
-                        <a href="{% url 'edit_semester' pk=semester.pk %}" class="update" title="Edit"><i
+                        <a href="{% url 'edit_semester' pk=semester.pk %}" class="update" title="Editar"><i
                                 class="fas fa-pencil-alt"></i></a>
-                        <a href="{% url 'delete_semester' pk=semester.pk %}" class="delete" title="Delete"><i
+                        <a href="{% url 'delete_semester' pk=semester.pk %}" class="delete" title="Eliminar"><i
                                 class="fas fa-trash-alt"></i></a>
                     </div>
                 </td>
@@ -79,11 +79,11 @@
                 <td></td>
                 <td>
                     <span class="text-danger">
-                        No Semester.
+                        No hay semestre.
                         {% if request.user.is_superuser %}
                         <a href="{% url 'add_semester' %}">
                             <i class="primary" style="font-size: 22px;">
-                                Add Semester Now.
+                                Añade un semestre ahora.
                             </i>
                             {% endif %}
                         </a>

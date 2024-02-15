@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block title %} My Courses | Learning management system{% endblock title %}
+{% block title %} Mis cursos | TutoNat {% endblock title %}
 {% load static %}
 
 {% block content %}
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">My Courses</li>
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Mis cursos</li>
     </ol>
 </nav>
 
@@ -19,7 +19,7 @@
 {% endif %}
 
 {% if request.user.is_lecturer %}
-    <div class="title-1">My Courses</div>
+    <div class="title-1">Mis cursos</div>
 {% endif %}
 
 {% if messages %}
@@ -38,19 +38,19 @@
 
 {% if request.user.is_student %}
 <div class="table-responsive p-3 mt-3">
-    <h6 class="fw-bold text-primary"><u>Taken Courses:</u></h6>
+    <h6 class="fw-bold text-primary"><u>Cursos realizados:</u></h6>
     <div class="table-shadow">
         <table class="table table-light">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th> Course Name </th>
-                    <th> Course Code </th>
+                    <th> Nombre del curso </th>
+                    <th> Código del curso </th>
                     <th> Cr.Hr </th>
-                    <th> Year </th>
-                    <th> Semester </th>
-                    <th> Current Semester </th>
-                    <th> Taken </th>
+                    <th> Año </th>
+                    <th> Semestre </th>
+                    <th> Semestre en curso </th>
+                    <th> Tomado </th>
                 </tr>
             </thead>
             <tbody>
@@ -71,7 +71,7 @@
                         {% endif %}
                     </th>
                     <td class="success">
-                        <i class="fas fa-check-circle"></i> Taken
+                        <i class="fas fa-check-circle"></i> Tomado
                     </td>
                 </tr>
                 {% endfor %}
@@ -82,18 +82,18 @@
 {% endif %}
 
 <div class="table-responsive p-3">
-    <h6 class="fw-bold text-primary"><u>All Courses:</u></h6>
+    <h6 class="fw-bold text-primary"><u>Todos los cursos:</u></h6>
     <div class="table-shadow">
         <table class="table table-light">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th> Course Name </th>
-                    <th> Course Code </th>
+                    <th> Nombre del curso </th>
+                    <th> Código del curso </th>
                     <th> Cr.Hr </th>
-                    <th> Year </th>
-                    <th> Semester </th>
-                    <th> Current Semester </th>
+                    <th> Año </th>
+                    <th> Semestre </th>
+                    <th> Semestre en curso </th>
                 </tr>
             </thead>
             <tbody>

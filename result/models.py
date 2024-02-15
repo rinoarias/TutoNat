@@ -15,23 +15,23 @@ YEARS = (
 )
 
 # LEVEL_COURSE = "Level course"
-BACHLOAR_DEGREE = "Bachloar"
-MASTER_DEGREE = "Master"
+BACHLOAR_DEGREE = "Bachiller"
+MASTER_DEGREE = "Máster"
 
 LEVEL = (
     # (LEVEL_COURSE, "Level course"),
-    (BACHLOAR_DEGREE, "Bachloar Degree"),
-    (MASTER_DEGREE, "Master Degree"),
+    (BACHLOAR_DEGREE, "Título de Bachiller"),
+    (MASTER_DEGREE, "Máster Universitario"),
 )
 
-FIRST = "First"
-SECOND = "Second"
-THIRD = "Third"
+FIRST = "Primero"
+SECOND = "Segundo"
+THIRD = "Tercero"
 
 SEMESTER = (
-    (FIRST, "First"),
-    (SECOND, "Second"),
-    (THIRD, "Third"),
+    (FIRST, "Primero"),
+    (SECOND, "Segundo"),
+    (THIRD, "Tercero"),
 )
 
 A_PLUS = "A+"
