@@ -27,11 +27,11 @@
 
 <div class="col-md-10 mx-auto d-block">
     <div class=""><video src="{{ video.video.url }}" controls ></video></div>
-    <p><i class="fas fa-calendar"></i> {{ video.timestamp|timesince }} ago</p>
+    <p><i class="fas fa-calendar"></i> {{ video.timestamp|timesince }} atrás</p>
     {% if video.summary %}
     <p class="text-orange text-center">{{ video.summary }}</p>
     {% else %}
-    No video description set.
+    No hay descripción de vídeo.
     {% endif %}
 </div>
 

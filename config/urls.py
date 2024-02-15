@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views import defaults as default_views
 
-admin.site.site_header = "Dj-LMS Admin"
+admin.site.site_header = "TutoNat Admin"
 
 urlpatterns = [
     path("jet/", include("jet.urls", "jet")),  # Django JET URLS
@@ -33,17 +33,17 @@ if settings.DEBUG:
         path(
             "400/",
             default_views.bad_request,
-            kwargs={"exception": Exception("Bad Request!")},
+            kwargs={"exception": Exception("¡Mala petición!")},
         ),
         path(
             "403/",
             default_views.permission_denied,
-            kwargs={"exception": Exception("Permission Denied")},
+            kwargs={"exception": Exception("Permiso denegado")},
         ),
         path(
             "404/",
             default_views.page_not_found,
-            kwargs={"exception": Exception("Page not Found")},
+            kwargs={"exception": Exception("Página no encontrada")},
         ),
         path("500/", default_views.server_error),
     ]

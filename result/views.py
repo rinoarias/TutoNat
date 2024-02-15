@@ -533,7 +533,7 @@ def course_registration_form(request):
                 "<b>Sesión : " + current_session.session.upper() + "</b>",
                 styles["Normal"],
             ),
-            Paragraph("<b>Level: " + student.level + "</b>", styles["Normal"]),
+            Paragraph("<b>Nivel: " + student.level + "</b>", styles["Normal"]),
         ],
     ]
     tbl = Table(tbl_data)

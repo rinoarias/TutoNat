@@ -33,6 +33,8 @@ services:
       - POSTGRES_PASSWORD=Postgres2024*
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432" # Mapeo del puerto 5432 del contenedor al puerto 5432 del host
 
 volumes:
   postgres_data:

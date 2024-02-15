@@ -54,7 +54,7 @@
                         </thead>
                         <tbody>
                             {% for course in courses %}
-                            {% if course.semester == "First" %}
+                            {% if course.semester == "Primero" %}
                             <tr>
                                 <th scope="row">
                                     <input name="{{ course.pk }}" value="{{ course.courseUnit }}" type="checkbox">
@@ -78,7 +78,7 @@
                                 <td></td>
                                 <td>
                                     <span class="text-danger">
-                                        No Course.
+                                        No hay curso.
                                     </span>
                                 </td>
                                 <td></td>
@@ -117,7 +117,7 @@
                         </thead>
                         <tbody>
                             {% for course in courses %}
-                            {% if course.semester == "Second" %}
+                            {% if course.semester == "Segundo" %}
                             <tr>
                                 <th scope="row">
                                     <input name="{{ course.pk }}" value="{{ course.courseUnit }}" type="checkbox">
@@ -160,7 +160,7 @@
                             </tr>
                             <tr>
                                 <th scope="row"></th>
-                                <td><b>Registerd course credit(s): <a id="units">{{ total_registered_credit }}</a></b>
+                                <td><b>Créditos matriculados: <a id="units">{{ total_registered_credit }}</a></b>
                                 </td>
                                 <td></td>
                                 <td></td>

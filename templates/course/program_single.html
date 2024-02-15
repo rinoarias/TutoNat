@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} {{ title }} | TutoNat{% endblock title %}
+{% block title %} {{ title }} | TutoNat {% endblock title %}
 {% load static %}
 
 {% block content %}
@@ -14,8 +14,7 @@
 
 {% if request.user.is_superuser %}
 <div class="manage-wrap">
-    <a class="btn btn-sm btn-primary" href="{% url 'course_add' pk=program.pk %}"><i class="fas fa-plus"></i>Add
-        Course</a>
+    <a class="btn btn-sm btn-primary" href="{% url 'course_add' pk=program.pk %}"><i class="fas fa-plus"></i>Añadir curso</a>
 </div>
 {% endif %}
 
@@ -36,15 +35,15 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th> Course Name </th>
-                    <th> Course Code </th>
+                    <th> Nombre del curso </th>
+                    <th> Código del curso </th>
                     <th> Cr.Hr </th>
-                    <th> Level </th>
-                    <th> Year </th>
-                    <th> Semester </th>
-                    <th> Current Semester </th>
+                    <th> Nivel </th>
+                    <th> Año </th>
+                    <th> Semestre </th>
+                    <th> Semestre actual </th>
                     {% if request.user.is_superuser %}
-                    <th>Action</th>
+                    <th>Acción</th>
                     {% endif %}
                 </tr>
             </thead>
@@ -75,10 +74,10 @@
                             </button>
                             <div class="dropdown-menu position-fixed">
                                 <a class="dropdown-item" href="{% url 'edit_course' slug=course.slug %}">
-                                    <i class="fas fa-pencil-alt"></i> Edit
+                                    <i class="fas fa-pencil-alt"></i> Editar
                                 </a>
                                 <a class="dropdown-item" href="{% url 'delete_course' slug=course.slug %}">
-                                    <i class="fas fa-trash-alt"></i> Delete
+                                    <i class="fas fa-trash-alt"></i> Eliminar
                                 </a>
                             </div>
                         </div>
@@ -89,11 +88,11 @@
                 <tr>
                   <td colspan="9">
                   <span class="text-danger">
-                    No course for this progrm.
+                    No hay curso para este programa.
                     {% if request.user.is_superuser %}
                     <a href="{% url 'course_add' pk=program.pk %}">
                     <i class="primary" style="font-size: 22px;">
-                       Add one now.
+                        Añade uno ahora.
                     </i>
                     {% endif %}
                     </a>

@@ -20,15 +20,15 @@ from course.models import Course
 from .utils import *
 
 CHOICE_ORDER_OPTIONS = (
-    ("content", _("Content")),
-    ("random", _("Random")),
-    ("none", _("None")),
+    ("content", _("Contenido")),
+    ("random", _("Aleatorio")),
+    ("none", _("Ninguno")),
 )
 
 CATEGORY_OPTIONS = (
-    ("assignment", _("Assignment")),
-    ("exam", _("Exam")),
-    ("practice", _("Practice Quiz")),
+    ("tarea", _("Tarea")),
+    ("examen", _("Exámen")),
+    ("practica", _("Cuestionario práctico")),
 )
 
 
@@ -480,7 +480,7 @@ class MCQuestion(Question):
         help_text=_(
             "El orden en que se muestran al usuario las opciones de elección múltiple"
         ),
-        verbose_name=_("Choice Order"),
+        verbose_name=_("Orden de elección"),
     )
 
     def check_if_correct(self, guess):

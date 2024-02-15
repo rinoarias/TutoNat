@@ -26,8 +26,8 @@ class QuizAdminForm(forms.ModelForm):
     questions = forms.ModelMultipleChoiceField(
         queryset=Question.objects.all().select_subclasses(),
         required=False,
-        label=_("Questions"),
-        widget=FilteredSelectMultiple(verbose_name=_("Questions"), is_stacked=False),
+        label=_("Preguntas"),
+        widget=FilteredSelectMultiple(verbose_name=_("Preguntas"), is_stacked=False),
     )
 
     def __init__(self, *args, **kwargs):
@@ -55,6 +55,16 @@ class QuizAdmin(admin.ModelAdmin):
         "category",
     )
 
+# class QuizAdmin(admin.ModelAdmin):
+#     form = QuizAdminForm
+
+#     list_display = ("titulo",)
+#     # list_filter = ('category',)
+#     search_fields = (
+#         "descripcion",
+#         "categoria",
+#     )
+
 
 class MCQuestionAdmin(admin.ModelAdmin):
     list_display = ("content",)
@@ -65,6 +75,16 @@ class MCQuestionAdmin(admin.ModelAdmin):
     filter_horizontal = ("quiz",)
 
     inlines = [ChoiceInline]
+    
+# class MCQuestionAdmin(admin.ModelAdmin):
+#     list_display = ("contenido",)
+#     # list_filter = ('category',)
+#     fields = ("contenido", "figura", "cuestionario", "explicación", "orden_de_elección")
+
+#     search_fields = ("contenido", "explicación")
+#     filter_horizontal = ("cuestionario",)
+
+#     inlines = [ChoiceInline]
 
 
 class ProgressAdmin(admin.ModelAdmin):
@@ -72,6 +92,12 @@ class ProgressAdmin(admin.ModelAdmin):
         "user",
         "score",
     )
+    
+# class ProgressAdmin(admin.ModelAdmin):
+#     search_fields = (
+#         "usuario",
+#         "puntuación",
+#     )
 
 
 class EssayQuestionAdmin(admin.ModelAdmin):
@@ -84,6 +110,18 @@ class EssayQuestionAdmin(admin.ModelAdmin):
     )
     search_fields = ("content", "explanation")
     filter_horizontal = ("quiz",)
+
+
+# class EssayQuestionAdmin(admin.ModelAdmin):
+#     list_display = ("contenido",)
+#     # list_filter = ('category',)
+#     fields = (
+#         "contenido",
+#         "cuestionario",
+#         "explicación",
+#     )
+#     search_fields = ("contenido", "explicación")
+#     filter_horizontal = ("cuestionario",)
 
 
 admin.site.register(Quiz, QuizAdmin)

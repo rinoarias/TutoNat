@@ -60,6 +60,15 @@ class MCQuestionForm(forms.ModelForm):
         exclude = ()
 
 
+# MCQuestionFormSet = inlineformset_factory(
+#     MCQuestion,
+#     Choice,
+#     form=MCQuestionForm,
+#     fields=["choice", "correct"],
+#     can_delete=True,
+#     extra=5,
+# )
+
 MCQuestionFormSet = inlineformset_factory(
     MCQuestion,
     Choice,

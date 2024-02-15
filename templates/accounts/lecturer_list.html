@@ -26,10 +26,10 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th> Número de identificación </th>
+                <th> Usuario </th>
                 <th> Nombre completo </th>
                 <th> Correo electrónico </th>
-                <th> Número de móvil </th>
+                <th> Número telefónico </th>
                 <th> Dirección/ciudad </th>
                 <th> Última conexión </th>
                 {% if request.user.is_superuser %}
@@ -65,7 +65,7 @@
                 <tr>
                   <td colspan="8">
                   <span class="text-danger">
-                    No Lecturer(s).
+                    No hay profesores.
                     {% if request.user.is_superuser %}
                     <a href="{% url 'add_lecturer' %}">
                     <i class="primary" style="font-size: 22px;">

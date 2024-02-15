@@ -248,7 +248,7 @@ class QuizTake(FormView):
         course = get_object_or_404(Course, pk=self.kwargs["pk"])
 
         if quizQuestions <= 0:
-            messages.warning(request, f"Question set of the quiz is empty. try later!")
+            messages.warning(request, f"El conjunto de preguntas del cuestionario está vacío. ¡Inténtalo más tarde!")
             return redirect("quiz_index", self.course.slug)
 
         if self.quiz.draft and not request.user.has_perm("quiz.change_quiz"):
@@ -262,7 +262,7 @@ class QuizTake(FormView):
             # return render(request, self.single_complete_template_name)
             messages.info(
                 request,
-                f"You have already sat this exam and only one sitting is permitted",
+                f"Ya se ha presentado a este examen y sólo se permite una convocatoria",
             )
             return redirect("quiz_index", self.course.slug)
 

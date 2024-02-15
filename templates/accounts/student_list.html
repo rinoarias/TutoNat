@@ -31,7 +31,7 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th> Número de identificación </th>
+                <th> Usuario </th>
                 <th> Nombre completo </th>
                 <th> Correo electrónico </th>
                 <th> Programa </th>
@@ -67,7 +67,7 @@
                 <tr>
                   <td colspan="6">
                   <span class="text-danger">
-                    No Student.
+                    No hay estuiantes.
                     {% if request.user.is_superuser %}
                     <a href="{% url 'add_student' %}">
                     <i class="primary" style="font-size: 22px;">
