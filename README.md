@@ -95,4 +95,3 @@ Last but not least, go to this address http://127.0.0.1:8000
 </a>
 </div>
 
-### Show your support by ⭐️ this project!
