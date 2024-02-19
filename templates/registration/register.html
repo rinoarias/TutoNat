@@ -6,45 +6,47 @@
 
 <div class="container py-5">
 	
-  <div class="blue-gradient text-light p-3 mb-5">
+  <div class="blue-gradient text-info p-3 mb-5">
 	  <h1 class="lead my-0">
 		<i class="fas fa-lock mr-2"></i>Crea tu cuenta
 	  </h1>
   </div>
+
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{% if 'success' in message.tags %}success{% elif 'error' in message.tags %}danger{% endif %}">
+				{{ message }}
+			</div>
+		{% endfor %}
+	{% endif %}
+
 
   <form action="" method="POST" id="login-form">
 	  {% csrf_token %}
 	  <div class="row">
 		  <div class="col-lg-6">
 			<h1 class="lead p-2 bg-light">Formulario de registro</h1>
-			<div class="mb-3">
+			{% comment %} <div class="mb-3">
 				<label for="username_id" class="form-label">{{ form.username.label }}</label>
 				{{ form.username }}
 				<div id="message-wrapper"></div>
-			</div>
+			</div> {% endcomment %}
 			<div class="mb-3">
 				<label for="email_id" class="form-label">{{ form.email.label }}</label>
 				{{ form.email }}
+				<div id="message-wrapper"></div>
 			</div>
-			<div class="mb-3">
+			{% comment %} <div class="mb-3">
 				<label for="password1_id" class="form-label">{{ form.password1.label }}</label>
 				{{ form.password1 }}
 			</div>
 			<div class="mb-3">
 				<label for="password2_id" class="form-label">{{ form.password2.label }}</label>
 				{{ form.password2 }}
-			</div>
+			</div> {% endcomment %}
 		  </div>
 		  <div class="col-lg-6">
 			<h1 class="lead p-2 bg-light">Información personal</h1>
-			<div class="mb-3">
-				<label for="address_id" class="form-label">{{ form.address.label }}</label>
-				{{ form.address }}
-			</div>
-			<div class="mb-3">
-				<label for="phone_id" class="form-label">{{ form.phone.label }}</label>
-				{{ form.phone }}
-			</div>
 			<div class="mb-3">
 				<label for="first_name_id" class="form-label">{{ form.first_name.label }}</label>
 				{{ form.first_name }}
@@ -52,6 +54,14 @@
 			<div class="mb-3">
 				<label for="last_name_id" class="form-label">{{ form.last_name.label }}</label>
 				{{ form.last_name }}
+			</div>
+			<div class="mb-3">
+				<label for="address_id" class="form-label">{{ form.address.label }}</label>
+				{{ form.address }}
+			</div>
+			<div class="mb-3">
+				<label for="phone_id" class="form-label">{{ form.phone.label }}</label>
+				{{ form.phone }}
 			</div>
 			<div class="mb-3">
 				<label for="gender_id" class="form-label">{{ form.gender.label }}</label>
@@ -69,8 +79,9 @@
 	  </div>
 
     {% if form.errors %}
-          <p class="text-danger my-2"><i class="fas fa-exclamation-circle"></i> Usuario y contraseña no válidos.</p><br>
+          {% comment %} <p class="text-danger my-2"><i class="fas fa-exclamation-circle"></i> Usuario y contraseña no válidos.</p><br> {% endcomment %}
     {% endif %}
+
 
     <button type="submit" class="btn btn-primary" id="login-btn"><i class="fas fa-sign-in-alt"></i><small> REGISTRARSE</small></button>
   </form>
@@ -90,22 +101,24 @@
     loginBtnEl.classList.add("disabled");
   })
 
-  $("#username_id").on("input", function () {
-    username = $(this).val();
+  $("#email_id").on("input", function () {
+    email = $(this).val();
 
     $.ajax({
-      url: "/accounts/ajax/validate-username/",
+      url: "/accounts/ajax/validate-email/",
       data: {
-        username: username
+        email: email
       },
       dataType: 'json',
       success: function (data) {
         if (data.is_taken) {
           console.log(data.is_taken);
-          $('#message-wrapper').html(`<p class="my-2 text-danger"><span class="bg-error p-2"><b>${username}</b> ya está ocupado :( prueba con otro </span></p>`)
+          $('#message-wrapper').html(`<p class="my-2 text-danger"><span class="bg-error p-2"><b>${email}</b> ya está ocupado :( prueba con otro </span></p>`);
+		  // loginBtnEl.classList.add("disabled");
         }
         else {
-          $('#message-wrapper').html(`<p class="my-2 text-success"><span class="bg-correct p-2"><b>${username}</b> es válido </span></p>`)
+          $('#message-wrapper').html(`<p class="my-2 text-success"><span class="bg-correct p-2"><b>${email}</b> es válido </span></p>`);
+		  // loginBtnEl.classList.remove("disabled");
         }
       }
 

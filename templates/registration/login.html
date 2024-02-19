@@ -3,6 +3,17 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+
+<div class="col">
+  {% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{% if 'success' in message.tags %}success{% elif 'error' in message.tags %}danger{% endif %}">
+				{{ message }}
+			</div>
+		{% endfor %}
+	{% endif %}
+</div>
+
 <div class="col-md-4 mx-auto mt-5">
   <div class="card">
     <div class="form-title">
@@ -23,12 +34,25 @@
           {% if form.errors %}
                 <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Usuario y contraseña no válidos.</span><br>
           {% endif %}
-      
-          <button type="submit" class="btn btn-primary" id="login-btn"><i class="fas fa-sign-in-alt"></i><small> INICIAR SESIÓN</small></button>
+          
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary" id="login-btn"><i class="fas fa-sign-in-alt"></i><small> INICIAR SESIÓN</small></button>
+          </div>
+
         </form>
         <br>
-        <div class="login-bottom">
+        <div class="text-center login-bottom">
           <a href="{% url 'password_reset' %}" class="link">¿Ha olvidado su contraseña?</a>
+        </div>
+        <div class="text-center login-bottom">
+          <a href="{% url 'register' %}" class="link">¿No tienes una cuenta? Regístrate ahora</a>
+        </div>
+        <div class="text-center col-12">
+          <p class="small m-0">
+            Lea nuestras <a href="{% url 'privacy_policy' %}"> Política de Privacidad </a> y <a href="{% url 'term-of-service' %}"> Condiciones de Uso. </a>
+            <br />TutoNat &copy; <script>document.write(new Date().getFullYear());</script>
+            <br />
+          </p>
         </div>
       </div>
   </div>

@@ -26,6 +26,7 @@
 			</p>
 		</div>
 		{% url 'home' as hom %} {% url 'dashboard' as dash %} {% url 'profile' as prof %}
+		{% url 'chat' as chat %}
 		{% url 'lecturer_list' as lec %}
 		{% url 'student_list' as stu %} {% url 'course_allocation_view' as cav %}
 		{% url 'programs' as pro %} {% url 'session_list' as sess %} {% url 'semester_list' as sem %}
@@ -45,7 +46,9 @@
 			<li class="{% if request.path == prof %}active{% endif %}">
 				<a href="{% url 'profile' %}"><i class="fas fa-user"></i>Perfil</a>
 			</li>
-
+			<li class="{% if request.path == chat %}active{% endif %}">
+				<a href="{% url 'chat' %}"><i class="fas fa-regular fa-comments"></i>Chatbot</a>
+			</li>
 			{% if request.user.is_superuser %}
 			<li class="{% if request.path == admin_p %}active{% endif %}">
 				<a href="{% url 'admin_panel' %}"><i class="fas fa-user-tie"></i>Panel de administración</a>
@@ -122,11 +125,13 @@
 
 	<footer class="card-footer mt-5 pt-3 pb-5 px-2">
 		<div class="col-12">
-			<p class="small m-0">
-				Lea nuestras <a href="#"> Política de Privacidad </a> y <a href="#"> Condiciones de Uso. </a>
+			<p class="text-center small m-0">
+				Lea nuestras <a href="{% url 'privacy_policy' %}"> Política de Privacidad </a> y <a href="{% url 'term-of-service' %}"> Condiciones de Uso. </a>
 				<br />TutoNat &copy; <script>document.write(new Date().getFullYear());</script>
 				<br />
 			</p>
 		</div>
 	</footer>
 </div>
+
+

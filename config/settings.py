@@ -64,6 +64,7 @@ PROJECT_APPS = [
     "search.apps.SearchConfig",
     "quiz.apps.QuizConfig",
     "payments.apps.PaymentsConfig",
+    "chatbot.apps.ChatbotConfig",
 ]
 
 # Combine all apps
@@ -156,7 +157,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "es-es"
 
 TIME_ZONE = "UTC"
 

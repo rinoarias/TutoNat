@@ -22,6 +22,7 @@ services:
       - EMAIL_HOST_PASSWORD=TutoSistIntel2024@
       - EMAIL_HOST=smtp-mail.outlook.com
       - EMAIL_PORT=587
+      - 
     depends_on:
       - db
 

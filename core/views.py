@@ -308,3 +308,19 @@ def semester_delete_view(request, pk):
         semester.delete()
         messages.success(request, "Semestre eliminado con éxito")
     return redirect("semester_list")
+
+
+# ########################################################
+# Política de Privacidad y Condiciones de Uso
+# ########################################################
+def privacy_policy_view(request):
+    context = {
+        "title": "Políticas de privacidad",
+    }
+    return render(request, "privacy.html", context)
+
+def terms_use_view(request):
+    context = {
+        "title": "Condiciones de Uso",
+    }
+    return render(request, "term.html", context)

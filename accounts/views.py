@@ -22,20 +22,26 @@ def validate_username(request):
     data = {"is_taken": User.objects.filter(username__iexact=username).exists()}
     return JsonResponse(data)
 
+def validate_email(request):
+    email = request.GET.get("email", None)
+    data = {"is_taken": User.objects.filter(email__iexact=email).exists()}
+    return JsonResponse(data)
+
 
 def register(request):
     if request.method == "POST":
         form = StudentAddForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, f"Cuenta creada correctamente.")
+            messages.success(request, f"La cuenta fue creada correctamente. Revisa las credenciales en tu correo electrónico.")
+            return redirect('login')
         else:
             messages.error(
-                request, f"Algo no es correcto, por favor rellene todos los campos correctamente."
+                request, f"Algo no es está bien, por favor rellene todos los campos correctamente."
             )
     else:
         form = StudentAddForm(request.POST)
-    return render(request, "registration/register.html", {"form": form})
+    return render(request, "registration/register.html", {"form": form, "messages": messages.get_messages(request)})
 
 
 @login_required

@@ -136,7 +136,7 @@ class StaffAddForm(UserCreationForm):
             # Send email with the generated credentials
             send_mail(
                 "Las credenciales de tu cuenta TutoNat",
-                f"Tu usuario: {generated_username}\nYTu contraseña: {generated_password}",
+                f"Tu usuario: {generated_username}\nTu contraseña: {generated_password}",
                 settings.EMAIL_FROM_ADDRESS,
                 [user.email],
                 fail_silently=False,
@@ -149,7 +149,11 @@ class StudentAddForm(UserCreationForm):
     username = forms.CharField(
         max_length=30,
         widget=forms.TextInput(
-            attrs={"type": "text", "class": "form-control", "id": "username_id"}
+            attrs={
+                "type": "text", 
+                "class": "form-control", 
+                "id": "username_id"
+                }
         ),
         label="Usuario",
         required=False,
@@ -232,6 +236,7 @@ class StudentAddForm(UserCreationForm):
             attrs={
                 "type": "email",
                 "class": "form-control",
+                "id": "email_id"
             }
         ),
         label="Correo electrónico",
@@ -262,10 +267,11 @@ class StudentAddForm(UserCreationForm):
         required=False,
     )
 
-    # def validate_email(self):
-    #     email = self.cleaned_data['email']
-    #     if User.objects.filter(email__iexact=email, is_active=True).exists():
-    #         raise forms.ValidationError("Email has taken, try another email address. ")
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email__iexact=email, is_active=True).exists():
+            raise forms.ValidationError("El correo electrónico está ocupado, inténtelo con otra dirección de correo electrónico.")
+        return email
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -282,9 +288,9 @@ class StudentAddForm(UserCreationForm):
         user.address = self.cleaned_data.get("address")
         user.email = self.cleaned_data.get("email")
 
-        # Generate a username based on first and last name and registration date
+        # Generar un nombre de usuario a partir del nombre, los apellidos y la fecha de registro
         registration_date = datetime.now().strftime("%Y")
-        total_students_count = Student.objects.count()
+        total_students_count = Student.objects.count() + 1
         generated_username = (
             f"{settings.STUDENT_ID_PREFIX}-{registration_date}-{total_students_count}"
         )

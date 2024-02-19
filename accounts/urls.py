@@ -8,6 +8,12 @@ from django.urls import path, include
 #     LoginView,
 #     LogoutView,
 # )
+from django.contrib.auth.views import (
+    LoginView, 
+    PasswordResetView,)
+
+from accounts.forms import EmailValidationOnForgotPassword
+
 from .views import (
     profile,
     profile_single,
@@ -24,10 +30,11 @@ from .views import (
     delete_student,
     ParentAdd,
     validate_username,
+    validate_email,
     register,
 )
 
-# from .forms import EmailValidationOnForgotPassword
+from .forms import EmailValidationOnForgotPassword
 
 
 urlpatterns = [
@@ -47,6 +54,7 @@ urlpatterns = [
     path("students/<int:pk>/delete/", delete_student, name="student_delete"),
     path("parents/add/", ParentAdd.as_view(), name="add_parent"),
     path("ajax/validate-username/", validate_username, name="validate_username"),
+    path("ajax/validate-email/", validate_email, name="validate_email"),
     path("register/", register, name="register"),
     # path('add-student/', StudentAddView.as_view(), name='add_student'),
     # path('programs/course/delete/<int:pk>/', course_delete, name='delete_course'),
@@ -54,13 +62,13 @@ urlpatterns = [
     # path('profile/<int:pk>/edit/', profileUpdateView, name='edit_profile'),
     # path('profile/<int:pk>/change-password/', changePasswordView, name='change_password'),
     # ################################################################
-    # path('login/', LoginView.as_view(), name='login'),
+    path('login/', LoginView.as_view(), name='login'),
     # path('logout/', LogoutView.as_view(), name='logout', kwargs={'next_page': '/'}),
-    # path('password-reset/', PasswordResetView.as_view(
-    #     form_class=EmailValidationOnForgotPassword,
-    #     template_name='registration/password_reset.html'
-    # ),
-    #      name='password_reset'),
+    path('password-reset/', PasswordResetView.as_view(
+        form_class=EmailValidationOnForgotPassword,
+        template_name='registration/password_reset.html'
+    ),
+         name='password_reset'),
     # path('password-reset/done/', PasswordResetDoneView.as_view(
     #     template_name='registration/password_reset_done.html'
     # ),

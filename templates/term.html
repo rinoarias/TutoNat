@@ -1,3 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n%}
+
+{% block title %}{{ title }} | TutoNat {% endblock title %} 
+
+{% block sidebar %}{% endblock %}
+
+{% block maincontent %}
+
+
+{% block content %}
 <!-- Term Modal -->
 <div class="modal fade" id="term-of-service" tabindex="-1" aria-labelledby="termOfService" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
@@ -31,9 +43,28 @@
             En ningún caso seremos responsables ante los usuarios por daños directos, indirectos, incidentales, especiales o consecuentes que surjan del uso o la imposibilidad de usar la aplicación, incluso si se nos ha informado de la posibilidad de tales daños.
         </p>
         </div>
+{% comment %}         
         <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+        </div>
+         {% endcomment %}
+        <div class="modal-footer">
+            <a href="{% url 'home' %}" class="btn btn-primary">Entendido</a>
         </div>
     </div>
     </div>
 </div>
+
+{% endblock content %}
+{% endblock maincontent%}
+
+{% block js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var privacyPolicyModal = new bootstrap.Modal(document.getElementById('term-of-service'), {
+            keyboard: false
+        });
+        privacyPolicyModal.show();
+    });
+</script>
+{% endblock %}

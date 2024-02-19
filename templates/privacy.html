@@ -1,3 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n%}
+
+{% block title %}{{ title }} | TutoNat {% endblock title %} 
+
+{% block sidebar %}{% endblock %}
+
+{% block maincontent %}
+
+
+{% block content %}
 <!-- Privacy Modal -->
 <div class="modal fade" id="privacy-policy" tabindex="-1" aria-labelledby="privacyPolicy" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
@@ -56,10 +68,27 @@
             Si tiene alguna pregunta sobre esta Política de Privacidad, puede comunicarse con nosotros a través de <a href="mailto:rino.arias2018@uteq.edu.ec">rino.arias2018@uteq.edu.ec</a>.
         </p>
         </div>
+        {% comment %} <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="entendido-button" data-bs-dismiss="modal">Entendido</button>
+        </div> {% endcomment %}
         <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+            <a href="{% url 'home' %}" class="btn btn-primary">Entendido</a>
         </div>
     </div>
     </div>
 </div>
+{% endblock content %}
+{% endblock maincontent %}
 
+
+
+{% block js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var privacyPolicyModal = new bootstrap.Modal(document.getElementById('privacy-policy'), {
+            keyboard: false
+        });
+        privacyPolicyModal.show();
+    });
+</script>
+{% endblock %}

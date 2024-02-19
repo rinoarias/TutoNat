@@ -19,6 +19,7 @@ urlpatterns = [
     path("quiz/", include("quiz.urls")),
     path("payments/", include("payments.urls")),
     path("accounts/api/", include("accounts.api.urls", namespace="accounts-api")),
+    path("chatbot/", include("chatbot.urls")),
     path("admin/", admin.site.urls),
 ]
 
