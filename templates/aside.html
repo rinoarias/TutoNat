@@ -26,7 +26,7 @@
 			</p>
 		</div>
 		{% url 'home' as hom %} {% url 'dashboard' as dash %} {% url 'profile' as prof %}
-		{% url 'chat' as chat %}
+		{% url 'chatbot' as chat %}
 		{% url 'lecturer_list' as lec %}
 		{% url 'student_list' as stu %} {% url 'course_allocation_view' as cav %}
 		{% url 'programs' as pro %} {% url 'session_list' as sess %} {% url 'semester_list' as sem %}
@@ -47,7 +47,7 @@
 				<a href="{% url 'profile' %}"><i class="fas fa-user"></i>Perfil</a>
 			</li>
 			<li class="{% if request.path == chat %}active{% endif %}">
-				<a href="{% url 'chat' %}"><i class="fas fa-regular fa-comments"></i>Chatbot</a>
+				<a href="{% url 'chatbot' %}"><i class="fas fa-regular fa-comments"></i>Chatbot</a>
 			</li>
 			{% if request.user.is_superuser %}
 			<li class="{% if request.path == admin_p %}active{% endif %}">

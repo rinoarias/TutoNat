@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {{ title }} | TutoNat {% endblock title %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ user.get_full_name }} | ChatBot</li>
+  </ol>
+</nav>
+
+{% include 'snippets/messages.html' %}
+
+
+{% comment %} <section style="background-color: #eee;">
+    <div class="container py-5">
+  
+      <div class="row d-flex justify-content-center">
+        <div class="">
+  
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center p-3"
+              style="border-top: 4px solid #0D6EFD;">
+              <h5 class="mb-0">ChatBot IA</h5>
+              <div class="d-flex flex-row align-items-center">
+                <span class="badge bg-primary me-3">20</span>
+                <i class="fas fa-envelope me-3 text-muted fa-xs"></i>
+                <i class="fas fa-comments me-3 text-muted fa-xs"></i>
+                <i class="fas fa-times text-muted fa-xs"></i>
+              </div>
+            </div>
+            
+            <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
+  
+                <div class="d-flex justify-content-start">
+                    <p class="small mb-1">{{ chatbot_name }} - </p>
+                    <p class="small mb-1 text-muted">23 Jan 5:37 pm</p>
+                  </div>
+                  <div class="d-flex flex-row justify-content-start">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                      alt="avatar 1" style="width: 45px; height: 100%;">
+                    <div>
+                      <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;">{{ first_message }}</p>
+                    </div>
+                  </div>
+  
+              <div class="d-flex justify-content-end">
+                <p class="small mb-1 text-muted">23 Jan 2:05 pm</p>
+                <p class="small mb-1"> - {{ user.get_full_name }}</p>
+              </div>
+              <div class="d-flex flex-row justify-content-end mb-4 pt-1">
+                <div>
+                  <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary">{{ second_message }}</p>
+                </div>
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
+                  alt="avatar 1" style="width: 45px; height: 100%;">
+              </div>
+  
+              {% comment %} <div class="d-flex justify-content-between">
+                <p class="small mb-1">{{ chatbot_name }}</p>
+                <p class="small mb-1 text-muted">23 Jan 5:37 pm</p>
+              </div>
+              <div class="d-flex flex-row justify-content-start">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                  alt="avatar 1" style="width: 45px; height: 100%;">
+                <div>
+                  <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;">3er mensaje</p>
+                </div>
+              </div>
+  
+              <div class="d-flex justify-content-between">
+                <p class="small mb-1 text-muted">23 Jan 6:10 pm</p>
+                <p class="small mb-1">{{ user.get_full_name }}</p>
+              </div>
+              <div class="d-flex flex-row justify-content-end mb-4 pt-1">
+                <div>
+                  <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary">4to mensaje</p>
+                </div>
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
+                  alt="avatar 1" style="width: 45px; height: 100%;">
+              </div>
+  
+            </div> {% endcomment %}
+
+
+            <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
+              <div class="input-group mb-0">
+                <input type="text" class="form-control" placeholder="Escribe un mensaje..."
+                  aria-label="Nombre del destinatario" aria-describedby="button-addon2" />
+                <button class="btn btn-primary" type="button" id="button-addon2" style="padding-top: .55rem;">
+                  Enviar
+                </button>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  </section> {% endcomment %}
+
+{% endif %}
+
+{% endblock content %}
+
+{% block js %}
+
+<script>
+  $(document).ready(function() {
+    // Función para enviar mensajes
+    $("#chat-form").submit(function(e) {
+      e.preventDefault();
+
+      var message = $("#chat-input").val();
+      if (message.length > 0) {
+        // Enviar el mensaje al servidor
+        $.ajax({
+          url: "{% url 'chatbot' %}", // Reemplaza con la URL correcta
+          method: "POST",
+          data: {
+            message: message,
+          },
+          success: function(response) {
+            // Mostrar la respuesta del chatbot
+            var chatbotResponse = response.response;
+            // Construye el HTML para el mensaje del chatbot
+            var userMessageHTML = `
+              <div class="d-flex justify-content-start">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                  alt="avatar 1" style="width: 45px; height: 100%;">
+                <div>
+                  <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;">${chatbotResponse}</p>
+                </div>
+              </div>
+            `;
+            // Agrega el mensaje del chatbot al contenedor
+            $("#chat-container").append(userMessageHTML);
+            $("#chat-input").val("");
+          },
+          error: function(error) {
+            // Mostrar un mensaje de error
+            console.log(error);
+            alert("Error al enviar el mensaje");
+          },
+        });
+      }
+    });
+  });
+</script>
+
+{% endblock js %}

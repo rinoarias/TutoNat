@@ -22,7 +22,7 @@ services:
       - EMAIL_HOST_PASSWORD=TutoSistIntel2024@
       - EMAIL_HOST=smtp-mail.outlook.com
       - EMAIL_PORT=587
-      - 
+      - GEMINI_API_KEY=AIzaSyBsN9x_nb8CLEpMhoDEU-Nz1S0m6LsRLFM
     depends_on:
       - db
 
