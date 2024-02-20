@@ -26,3 +26,7 @@ python-decouple==3.8
 # Payments
 stripe==5.5.0
 gopay==2.0.1
+
+# Google generative ai
+# https://github.com/google/generative-ai-python/releases/tag/v0.3.2
+google-generativeai==0.3.2 # https://github.com/google/generative-ai-python 
